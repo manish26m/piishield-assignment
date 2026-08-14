@@ -1,4 +1,3 @@
-
 import re
 from typing import List, Dict
 
@@ -243,10 +242,16 @@ class PersonDetector(BaseDetector):
         text: str,
         element_id: str
     ) -> List[Dict]:
+        return self._detect_with_doc(text, element_id, self.nlp(text))
+
+    def _detect_with_doc(
+        self,
+        text: str,
+        element_id: str,
+        doc,
+    ) -> List[Dict]:
 
         detections = []
-
-        doc = self.nlp(text)
 
         for entity in doc.ents:
 
@@ -331,3 +336,4 @@ class PersonDetector(BaseDetector):
                 })
 
         return detections
+
