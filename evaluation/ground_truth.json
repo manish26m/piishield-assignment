@@ -1,0 +1,66 @@
+
+{
+  "description": "Small labeled regression set covering all nine required PII categories and representative non-PII controls.",
+  "cases": [
+    {
+      "id": "person_positive",
+      "text": "Contact person: Rashi Patil",
+      "expected": [{"entity_type": "PERSON", "text": "Rashi Patil"}]
+    },
+    {
+      "id": "email_positive",
+      "text": "Email: rashhi.patil@gmail.com",
+      "expected": [{"entity_type": "EMAIL", "text": "rashhi.patil@gmail.com"}]
+    },
+    {
+      "id": "phone_positive",
+      "text": "Mobile: +91 9876543210",
+      "expected": [{"entity_type": "PHONE", "text": "+91 9876543210"}]
+    },
+    {
+      "id": "company_positive",
+      "text": "Company: ICICI Securities Limited",
+      "expected": [{"entity_type": "COMPANY", "text": "ICICI Securities Limited"}]
+    },
+    {
+      "id": "address_positive",
+      "text": "Registered Office: 11/3, 11/4 and 11/5, Village Birdewadi, Pune - 410 501, Maharashtra, India",
+      "expected": [{"entity_type": "ADDRESS", "text": "11/3, 11/4 and 11/5, Village Birdewadi, Pune - 410 501"}]
+    },
+    {
+      "id": "ssn_positive",
+      "text": "SSN: 123-45-6789",
+      "expected": [{"entity_type": "SSN", "text": "123-45-6789"}]
+    },
+    {
+      "id": "card_positive",
+      "text": "Card number: 4111 1111 1111 1111",
+      "expected": [{"entity_type": "CREDIT_CARD", "text": "4111 1111 1111 1111"}]
+    },
+    {
+      "id": "dob_positive",
+      "text": "Date of Birth: 10/12/1999",
+      "expected": [{"entity_type": "DOB", "text": "10/12/1999"}]
+    },
+    {
+      "id": "ip_positive",
+      "text": "Server IP: 192.168.1.10",
+      "expected": [{"entity_type": "IP_ADDRESS", "text": "192.168.1.10"}]
+    },
+    {
+      "id": "date_negative",
+      "text": "The agreement was signed on December 10, 2025.",
+      "expected": []
+    },
+    {
+      "id": "identifier_negative",
+      "text": "Reference number: 123456789; Registration number: 141032.",
+      "expected": []
+    },
+    {
+      "id": "generic_company_negative",
+      "text": "The Company announced its annual results in Pune.",
+      "expected": []
+    }
+  ]
+}
