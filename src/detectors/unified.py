@@ -1,6 +1,8 @@
 import re
 from typing import Dict, Iterable, List, Tuple
 
+import spacy
+
 from .address import AddressDetector
 from .company import CompanyDetector
 from .credit_card import CreditCardDetector
@@ -52,14 +54,19 @@ class UnifiedDetector:
     )
 
     def __init__(self, detectors: Iterable = None):
-        self.detectors = list(detectors) if detectors is not None else [
+        if detectors is not None:
+            self.detectors = list(detectors)
+            return
+
+        shared_nlp = spacy.load("en_core_web_sm")
+        self.detectors = [
             EmailDetector(),
             PhoneDetector(),
             IPDetector(),
             CreditCardDetector(),
             SSNDetector(),
-            PersonDetector(),
-            CompanyDetector(),
+            PersonDetector(nlp=shared_nlp),
+            CompanyDetector(nlp=shared_nlp),
             AddressDetector(),
             DOBDetector(),
         ]
