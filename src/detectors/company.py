@@ -43,8 +43,8 @@ class CompanyDetector(BaseDetector):
         "the organisation",
     }
 
-    def __init__(self):
-        self.nlp = spacy.load("en_core_web_sm")
+    def __init__(self, nlp=None):
+        self.nlp = nlp or spacy.load("en_core_web_sm")
 
     @staticmethod
     def _clean_candidate(candidate: str) -> str:
