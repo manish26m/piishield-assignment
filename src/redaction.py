@@ -1,10 +1,42 @@
-
 from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
 
 from docx import Document
+from docx.text.paragraph import Paragraph
 
 from .replacement import ReplacementResolver
+
+
+def _set_text_preserve_formatting(paragraph: Paragraph, text: str) -> None:
+    """Replace visible paragraph text while retaining first-run formatting."""
+
+    if not paragraph.runs:
+        paragraph.add_run(text)
+        return
+
+    template = paragraph.runs[0]
+    bold = template.bold
+    italic = template.italic
+    underline = template.underline
+    font_name = template.font.name
+    font_size = template.font.size
+    color = (
+        template.font.color.rgb
+        if template.font.color and template.font.color.type
+        else None
+    )
+
+    paragraph.clear()
+    run = paragraph.add_run(text)
+    run.bold = bold
+    run.italic = italic
+    run.underline = underline
+    if font_name:
+        run.font.name = font_name
+    if font_size:
+        run.font.size = font_size
+    if color:
+        run.font.color.rgb = color
 
 
 def resolve_non_overlapping(detections: Iterable[Dict]) -> List[Dict]:
@@ -86,7 +118,10 @@ def redact_docx(
     for paragraph_index, paragraph in enumerate(document.paragraphs):
         element_id = f"P_{paragraph_index:05d}"
         if element_id in redacted_by_element:
-            paragraph.text = redacted_by_element[element_id]
+            _set_text_preserve_formatting(
+                paragraph,
+                redacted_by_element[element_id],
+            )
 
     for table_index, table in enumerate(document.tables):
         for row_index, row in enumerate(table.rows):
@@ -98,7 +133,13 @@ def redact_docx(
                 )
 
                 if element_id in redacted_by_element:
-                    cell.text = redacted_by_element[element_id]
+                    cell_paragraphs = cell.paragraphs
+                    _set_text_preserve_formatting(
+                        cell_paragraphs[0],
+                        redacted_by_element[element_id],
+                    )
+                    for extra_paragraph in cell_paragraphs[1:]:
+                        extra_paragraph.clear()
 
     for section_index, section in enumerate(document.sections):
         for location, container in (
@@ -113,7 +154,10 @@ def redact_docx(
                 )
 
                 if element_id in redacted_by_element:
-                    paragraph.text = redacted_by_element[element_id]
+                    _set_text_preserve_formatting(
+                        paragraph,
+                        redacted_by_element[element_id],
+                    )
 
     # Core properties are not visible in the document body, but they can
     # still carry personal metadata. Clear or replace only fields captured
@@ -133,3 +177,4 @@ def redact_docx(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     document.save(output_path)
+
