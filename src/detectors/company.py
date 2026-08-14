@@ -1,4 +1,3 @@
-
 import re
 from typing import Dict, List, Set, Tuple
 
@@ -100,6 +99,14 @@ class CompanyDetector(BaseDetector):
         text: str,
         element_id: str,
     ) -> List[Dict]:
+        return self._detect_with_doc(text, element_id, self.nlp(text))
+
+    def _detect_with_doc(
+        self,
+        text: str,
+        element_id: str,
+        doc,
+    ) -> List[Dict]:
 
         detections = []
         seen: Set[Tuple[int, int, str]] = set()
@@ -152,8 +159,6 @@ class CompanyDetector(BaseDetector):
                 0.97,
             )
 
-        doc = self.nlp(text)
-
         for entity in doc.ents:
             if entity.label_ != "ORG":
                 continue
@@ -172,3 +177,4 @@ class CompanyDetector(BaseDetector):
                 detection["end"],
             ),
         )
+
