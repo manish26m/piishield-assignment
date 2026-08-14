@@ -1,0 +1,106 @@
+
+{
+  "ground_truth_cases": 12,
+  "metrics": {
+    "PERSON": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "EMAIL": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "PHONE": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "COMPANY": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "ADDRESS": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "SSN": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "CREDIT_CARD": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "DOB": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "IP_ADDRESS": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "OVERALL_MICRO": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 99,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}
