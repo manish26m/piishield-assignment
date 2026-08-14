@@ -11,7 +11,7 @@ pip install -r requirements-deploy.txt
 streamlit run app.py
 ```
 
-For Render, create a new Web Service from this repository and use the included `render.yaml` blueprint. The hosting account must supply its own deployment URL; this repository does not contain credentials or raw source documents.
+The live Render deployment is available at [piishield-assignment.onrender.com](https://piishield-assignment.onrender.com). For a new deployment, create a Web Service from this repository and use the included `render.yaml` blueprint. This repository does not contain credentials or raw source documents.
 
 The complete local submission package is kept separately under `abc/`; this public repository contains only the deployable project surface.
 
@@ -23,6 +23,7 @@ PIIShield is a reproducible DOCX privacy pipeline. It extracts document content 
 - The application supports PERSON, EMAIL, PHONE, COMPANY, ADDRESS, SSN, CREDIT_CARD, DOB, and IP_ADDRESS.
 - The labeled regression report is in `evaluation/evaluation_report.md`.
 - The public repository excludes the original prospectus and raw Bronze/Silver data.
+- Render health check returned HTTP 200 for the live Streamlit application shell.
 
 ## Architecture
 
